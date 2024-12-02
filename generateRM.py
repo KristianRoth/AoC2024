@@ -14,13 +14,12 @@ content = [
 
 dirs = [f'./src/{f}' for f in os.listdir('./src') if os.path.isdir('./src/'+f) and f[0:3] == 'aoc']
 emojis = ['👼','🎅','🤶','🧑‍🎄','🧝','🧝‍♂️','🧝‍♀️','👪','🦌','🍪','🥛','🍷','🍴','⛪','🌟','❄️','☃️','⛄','🔥','🎄','🎁','🧦','🔔','🎶','🕯️','🛐','✝️']
-print(dirs)
 dirs.sort(key=lambda s: int(s[9:]))
 content.append('| 🎄 | Day | Time | #1 | #2 |')
 content.append('| --- | --- | --- | --- | --- |')
 subprocess.check_output(['zig', 'build'])
 for i,dir in enumerate(dirs):
-    fileName = dir.lower() + '.zig'
+    fileName = dir.lower() + "/" + dir.replace("./src/", "") + '.zig'
     time = subprocess.check_output([f'./zig-out/bin/AoC2024', f'{i + 1}', '--time'])
     time = '{:g}'.format(float('{:.{p}g}'.format(float(time)/1000_000, p=2)))
     content.append(f'| [{emojis[i]}](https://adventofcode.com/2024/day/{dir.replace("./src/aoc","")}) | [{dir.replace("./src/aoc", "Day ").capitalize()}]({fileName}) | {time} ms | ✅ | ✅ |')
