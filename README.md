@@ -5,5 +5,6 @@ Solutions for [Advent of Code 2023](https://adventofcode.com/2024). This years o
 ## Solution info for days
 | 🎄 | Day | Time | #1 | #2 |
 | --- | --- | --- | --- | --- |
-| [👼](https://adventofcode.com/2024/day/1) | [Day 1](./src/aoc1/aoc1.zig) | 2.3 ms | ✅ | ✅ |
-| [🎅](https://adventofcode.com/2024/day/2) | [Day 2](./src/aoc2/aoc2.zig) | 9.7 ms | ✅ | ✅ |
+| [👼](https://adventofcode.com/2024/day/1) | [Day 1](./src/aoc1/aoc1.zig) | 2.8 ms | ✅ | ✅ |
+| [🎅](https://adventofcode.com/2024/day/2) | [Day 2](./src/aoc2/aoc2.zig) | 9.6 ms | ✅ | ✅ |
+| [🤶](https://adventofcode.com/2024/day/3) | [Day 3](./src/aoc3/aoc3.zig) | 2.3 ms | ✅ | ✅ |
