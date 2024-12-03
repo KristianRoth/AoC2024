@@ -1,6 +1,7 @@
 const std = @import("std");
 const aoc1 = @import("aoc1/aoc1.zig");
 const aoc2 = @import("aoc2/aoc2.zig");
+const aoc3 = @import("aoc3/aoc3.zig");
 
 pub fn main() !void {
     const args = std.process.argsAlloc(std.heap.page_allocator) catch return;
@@ -22,6 +23,7 @@ pub fn main() !void {
     switch (day) {
         1 => try aoc1.solve(),
         2 => try aoc2.solve(),
+        3 => try aoc3.solve(),
         else => {
             std.debug.print("Day {d} not implemented\n", .{day});
             return;
