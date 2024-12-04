@@ -27,3 +27,23 @@ pub fn getPrefixedNumber(haystack: []u8) ?NumberResult {
 
     return .{ .number = number, .rest = haystack[i..] };
 }
+
+pub fn readToCharSlice(fileName: []const u8, allocator: std.mem.Allocator) ![][]const u8 {
+    var file = try std.fs.cwd().openFile(fileName, .{});
+    defer file.close();
+
+    var buf_reader = std.io.bufferedReader(file.reader());
+    var in_stream = buf_reader.reader();
+
+    var buf: [1024]u8 = undefined;
+
+    var arrayList = std.ArrayList([]const u8).init(allocator);
+    defer arrayList.deinit();
+    while (try in_stream.readUntilDelimiterOrEof(&buf, '\n')) |line| {
+        const line_copy = try allocator.alloc(u8, line.len);
+        std.mem.copyForwards(u8, line_copy, line);
+        try arrayList.append(line_copy);
+    }
+
+    return arrayList.toOwnedSlice();
+}
