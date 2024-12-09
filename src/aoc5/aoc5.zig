@@ -39,7 +39,7 @@ pub fn solve() !void {
     var sum: u32 = 0;
     var fixedSum: u32 = 0;
     for (chars[endOfDecl..]) |line| {
-        const nums = try shared.splitCharSlice(line, ',');
+        const nums = try shared.splitCharSlice(line, ",");
         if (try isCorrect(nums, &isAfter)) {
             sum += try std.fmt.parseInt(u32, nums[(nums.len - 1) / 2], 10);
         } else {
