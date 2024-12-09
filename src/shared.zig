@@ -47,3 +47,24 @@ pub fn readToCharSlice(fileName: []const u8, allocator: std.mem.Allocator) ![][]
 
     return arrayList.toOwnedSlice();
 }
+
+pub fn splitCharSlice(chars: []const u8, delim: u8) ![][]const u8 {
+    var arrayList = std.ArrayList([]const u8).init(std.heap.page_allocator);
+    defer arrayList.deinit();
+
+    var start: usize = 0;
+    for (chars, 0..) |c, i| {
+        if (c == delim) {
+            const slice = chars[start..i];
+            try arrayList.append(slice);
+            start = i + 1;
+        }
+    }
+
+    if (start < chars.len) {
+        const slice = chars[start..];
+        try arrayList.append(slice);
+    }
+
+    return arrayList.toOwnedSlice();
+}
