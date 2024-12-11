@@ -17,7 +17,7 @@ emojis = ['👼','🎅','🤶','🧑‍🎄','🧝','🧝‍♂️','🧝‍♀�
 dirs.sort(key=lambda s: int(s[9:]))
 content.append('| 🎄 | Day | Time | #1 | #2 |')
 content.append('| --- | --- | --- | --- | --- |')
-subprocess.check_output(['zig', 'build'])
+subprocess.check_output(['zig', 'build', '-Doptimize=ReleaseFast'])
 for i,dir in enumerate(dirs):
     fileName = dir.lower() + "/" + dir.replace("./src/", "") + '.zig'
     time = subprocess.check_output([f'./zig-out/bin/AoC2024', f'{i + 1}', '--time'])
