@@ -6,7 +6,7 @@ import timeit
 
 content = [
   '# 🎄 Advent of Code 2024 🎄',
-  'Solutions for [Advent of Code 2023](https://adventofcode.com/2024). This years objective is to learn ZigLang',
+  'Solutions for [Advent of Code 2024](https://adventofcode.com/2024). This years objective is to learn ZigLang',
   '## Usage',
   '```zig build run -- <day>```',
   '## Solution info for days'
