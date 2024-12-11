@@ -35,7 +35,7 @@ pub fn readToCharSlice(fileName: []const u8, allocator: std.mem.Allocator) ![][]
     var buf_reader = std.io.bufferedReader(file.reader());
     var in_stream = buf_reader.reader();
 
-    var buf: [1024]u8 = undefined;
+    var buf: [20000]u8 = undefined;
 
     var arrayList = std.ArrayList([]const u8).init(allocator);
     defer arrayList.deinit();
