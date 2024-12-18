@@ -16,6 +16,7 @@ const aoc14 = @import("aoc14/aoc14.zig");
 const aoc15 = @import("aoc15/aoc15.zig");
 const aoc16 = @import("aoc16/aoc16.zig");
 const aoc17 = @import("aoc17/aoc17.zig");
+const aoc18 = @import("aoc18/aoc18.zig");
 
 pub fn main() !void {
     const args = std.process.argsAlloc(std.heap.page_allocator) catch return;
@@ -52,6 +53,7 @@ pub fn main() !void {
         15 => try aoc15.solve(),
         16 => try aoc16.solve(),
         17 => try aoc17.solve(),
+        18 => try aoc18.solve(),
         else => {
             std.debug.print("Day {d} not implemented\n", .{day});
             return;
