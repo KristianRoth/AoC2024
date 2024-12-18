@@ -29,6 +29,7 @@ fn visitedIndexToPos(index: usize, len: usize) Vec2 {
 
 fn findPath(map: [][]const u8, visited: []usize, stillToVisit: *std.ArrayList(usize)) !void {
     while (stillToVisit.*.items.len != 0) {
+        std.mem.sort(usize, stillToVisit.*.items, &visited, compare);
         const minIndex = stillToVisit.swapRemove(stillToVisit.*.items.len - 1);
         const minValue = visited[minIndex];
         if (minValue == std.math.maxInt(usize)) {
@@ -41,29 +42,23 @@ fn findPath(map: [][]const u8, visited: []usize, stillToVisit: *std.ArrayList(us
             if (visited[strait] == std.math.maxInt(usize)) {
                 visited[strait] = minValue + 1;
                 try stillToVisit.append(strait);
-                std.mem.sort(usize, stillToVisit.*.items, &visited, compare);
             } else {
                 visited[strait] = @min(visited[strait], minValue + 1);
-                std.mem.sort(usize, stillToVisit.*.items, &visited, compare);
             }
         }
         const left = visitedIndex(pos, Vec2{ .x = dir.y, .y = dir.x }, map.len);
         if (visited[left] == std.math.maxInt(usize)) {
             visited[left] = minValue + 1000;
             try stillToVisit.append(left);
-            std.mem.sort(usize, stillToVisit.*.items, &visited, compare);
         } else {
             visited[left] = @min(visited[left], minValue + 1000);
-            std.mem.sort(usize, stillToVisit.*.items, &visited, compare);
         }
         const right = visitedIndex(pos, Vec2{ .x = -dir.y, .y = -dir.x }, map.len);
         if (visited[right] == std.math.maxInt(usize)) {
             visited[right] = minValue + 1000;
             try stillToVisit.append(right);
-            std.mem.sort(usize, stillToVisit.*.items, &visited, compare);
         } else {
             visited[right] = @min(visited[right], minValue + 1000);
-            std.mem.sort(usize, stillToVisit.*.items, &visited, compare);
         }
     }
 }
